@@ -2022,9 +2022,41 @@ void bakeModifiers() {
 
 	result.append('</table>');
 	chitBricks["modifiers"] = result.to_string();
-
 }
 
+void bakeSModifiers() {
+
+	buffer result;
+
+	//Heading
+	result.append('<table id="chit_small_modifiers" class="chit_brick nospace">');
+	result.append('<thead><tr><th colspan="2"><img src="');
+	result.append(imagePath);
+	result.append('modifiers.png" class="chit_walls_stretch">');
+	result.append('Small Modifiers</th></tr>');
+	result.append('</thead>');
+
+	result.append('<tr>');
+	result.append('<td class="label">Item Drop</td>');
+	result.append('<td class="info">' + formatModifier(item_drop_modifier()) + '</td>');
+	result.append('</tr>');
+	result.append('<tr>');
+	result.append('<td class="label">&nbsp;&nbsp;Forced Drop @</td>');
+	result.append('<td class="info">' + forcedDrop(0) + '</td>');
+	result.append('</tr>');
+
+	result.append('<tr>');
+	result.append('<td class="label">Combat Rate</td>');
+	result.append('<td class="info">' + formatModifier(combat_rate_modifier(), 0) + '</td>');
+	result.append('</tr>');
+	result.append('</tbody>');
+
+	result.append('</tr>');
+	result.append('</tbody>');
+
+	result.append('</table>');
+	chitBricks["small_modifiers"] = result.to_string();
+}
 void addStat(buffer result, stat s) {
 	result.append('<tr>');
 	result.append('<td class="label">');
@@ -4346,6 +4378,7 @@ void bakeBricks() {
 						case "substats":	bakeSubstats();		break;
 						case "organs":		bakeOrgans();		break;
 						case "modifiers":	bakeModifiers();	break;
+						case "smodifiers":	bakeSModifiers();	break;
 						case "elements":	bakeElements();		break;
 						case "tracker":		bakeTracker();		break;
 						case "thrall":		bakeThrall();		break;
